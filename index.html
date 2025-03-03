@@ -277,6 +277,8 @@
         position: relative;
         padding: 10px 0;
         white-space: nowrap;
+        display: flex;
+        align-items: center;
       }
 
       .nav-links a:hover {
@@ -304,6 +306,17 @@
 
       .nav-links .active a::before {
         width: 100%;
+      }
+
+      .warpcast-logo {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px; /* Space between logo and text in nav */
+        transition: transform 0.3s ease;
+      }
+
+      .nav-links a:hover .warpcast-logo {
+        transform: scale(1.1);
       }
 
       /* Hero Section */
@@ -1074,10 +1087,23 @@
         font-size: 1.8rem;
         margin: 0 15px;
         transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
       }
 
       .social-links a:hover {
         color: var(--secondary);
+        transform: scale(1.2);
+      }
+
+      .social-warpcast-logo {
+        width: 30px;
+        height: 30px;
+        transition: transform 0.3s ease;
+      }
+
+      .social-links a:hover .social-warpcast-logo {
         transform: scale(1.2);
       }
 
@@ -1171,6 +1197,10 @@
           bottom: 5px;
         }
 
+        .warpcast-logo {
+          margin-right: 10px;
+        }
+
         .spaces-grid {
           grid-template-columns: 1fr;
         }
@@ -1194,6 +1224,14 @@
         .nav-links a {
           font-size: 1rem;
           padding: 12px;
+        }
+        .warpcast-logo {
+          width: 20px;
+          height: 20px;
+        }
+        .social-warpcast-logo {
+          width: 24px;
+          height: 24px;
         }
       }
     </style>
@@ -1227,8 +1265,14 @@
                 <a
                   href="https://warpcast.com/~/channel/ratchet-clanker"
                   target="_blank"
-                  >Warpcast</a
                 >
+                  <img
+                    src="img/warpcast.png"
+                    alt="Warpcast Logo"
+                    class="warpcast-logo"
+                  />
+                  Warpcast
+                </a>
               </li>
               <li>
                 <a href="https://linktr.ee/drakhonen" target="_blank">Links</a>
@@ -1484,7 +1528,9 @@
               </li>
               <li>
                 <strong>Telegram:</strong>
-                <a href="#" target="_blank">$RaTcHeT Telegram</a>
+                <a href="https://t.me/ratchetclanker" target="_blank"
+                  >$RaTcHeT Telegram</a
+                >
               </li>
               <li>
                 <strong>Primary Links:</strong>
@@ -1495,12 +1541,13 @@
             </ul>
           </div>
           <div class="proof-card">
-            <h3>Assets Verification</h3>
-            <p>
-              To access gated areas like Captain's Cove, you need to have the
-              Captain's Key NFT in your wallet.
-            </p>
-            <a href="#" class="btn btn-primary">Verify NFT Ownership</a>
+            <h3>Clanker Verification</h3>
+            <p>A certified clanker token.</p>
+            <a
+              href="https://www.clanker.world/clanker/0x1D35741C51fB615cA70e28d3321f6F01e8D8A12D"
+              class="btn btn-primary"
+              >Verify NFT Ownership</a
+            >
           </div>
         </div>
       </div>
@@ -1518,7 +1565,13 @@
         </div>
         <div class="resources-grid" data-aos="fade-up" data-aos-delay="200">
           <div class="resource-card">
-            <div class="resource-icon">🌐</div>
+            <div class="resource-icon">
+              <img
+                src="img/warpcast.png"
+                alt="Warpcast Logo"
+                class="social-warpcast-logo"
+              />
+            </div>
             <h3>Warpcast Channel</h3>
             <p>JOIN $RaTcHeT Official Warpcast Channel</p>
             <a
@@ -1531,14 +1584,22 @@
           <div class="resource-card">
             <div class="resource-icon">💱</div>
             <h3>$RaTcHeT DEX</h3>
-            <p>Exchange platform for $RaTcHeT tokens</p>
-            <a href="#" class="btn btn-primary" target="_blank">Visit DEX</a>
+            <p>Buy $RaTcHeT tokens</p>
+            <a
+              href="https://app.uniswap.org/swap?outputCurrency=0x1D35741C51fB615cA70e28d3321f6F01e8D8A12D&chain=base"
+              class="btn btn-primary"
+              target="_blank"
+              >Buy Now</a
+            >
           </div>
           <div class="resource-card">
             <div class="resource-icon">📱</div>
             <h3>$RaTcHeT Telegram</h3>
             <p>Join our Telegram community</p>
-            <a href="#" class="btn btn-primary" target="_blank"
+            <a
+              href="https://t.me/ratchetclanker"
+              class="btn btn-primary"
+              target="_blank"
               >Join Telegram</a
             >
           </div>
@@ -1546,13 +1607,23 @@
             <div class="resource-icon">🔑</div>
             <h3>Captain's Key</h3>
             <p>Required gated asset for Captain's Cove</p>
-            <a href="#" class="btn btn-primary" target="_blank">Learn More</a>
+            <a
+              href="https://zora.co/collect/base:0x4c2222beea431b9f3404895fe8ef33c16cffeeed/1"
+              class="btn btn-primary"
+              target="_blank"
+              >Learn More</a
+            >
           </div>
           <div class="resource-card">
             <div class="resource-icon">🔄</div>
             <h3>$RaTcHeT Rebase LP</h3>
             <p>Liquidity Pool information</p>
-            <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+            <a
+              href="https://warpcast.com/drakhonen.eth/0xd1904ca8"
+              class="btn btn-primary"
+              target="_blank"
+              >View Details</a
+            >
           </div>
           <div class="resource-card">
             <div class="resource-icon">🔗</div>
@@ -1574,12 +1645,19 @@
       <div class="container">
         <div class="footer-logo">RATCHET<span>+</span>CLANKER</div>
         <div class="social-links">
-          <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a href="https://t.me/ratchetclanker" target="_blank"
+            ><i class="fab fa-telegram"></i
+          ></a>
           <a
             href="https://warpcast.com/~/channel/ratchet-clanker"
             target="_blank"
-            ><i class="fas fa-globe"></i
-          ></a>
+          >
+            <img
+              src="img/warpcast.png"
+              alt="Warpcast Logo"
+              class="social-warpcast-logo"
+            />
+          </a>
           <a href="#" target="_blank"><i class="fas fa-exchange-alt"></i></a>
           <a href="https://linktr.ee/drakhonen" target="_blank"
             ><i class="fas fa-link"></i
