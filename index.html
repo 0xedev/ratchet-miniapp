@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RATCHET+CLANKER - Virtual Community</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary: #7b2cbf;
+        --secondary: #00f5ff;
+        --tertiary: #ff0055;
+        --dark: #0f0c29;
+        --darker: #060420;
+        --light: #e9ecef;
+        --accent: #00ffaa;
+        --glow: 0 0 10px rgba(0, 245, 255, 0.7), 0 0 20px rgba(0, 245, 255, 0.4);
+        --neon-text-shadow: 0 0 5px rgba(0, 245, 255, 0.7),
+          0 0 10px rgba(0, 245, 255, 0.5), 0 0 20px rgba(0, 245, 255, 0.3);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Rajdhani", sans-serif;
+        background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+        color: var(--light);
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%233f37c9' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E"),
+          linear-gradient(
+            135deg,
+            rgba(15, 12, 41, 0.95) 0%,
+            rgba(6, 4, 32, 0.95) 100%
+          );
+        background-blend-mode: overlay;
+        z-index: -1;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 30px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Preloader */
+      .preloader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--darker);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+      }
+
+      .preloader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader {
+        width: 80px;
+        height: 80px;
+        border: 4px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid var(--secondary);
+        animation: spin 1s linear infinite;
+        position: relative;
+      }
+
+      .loader::before,
+      .loader::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 15px;
+        height: 15px;
+        background-color: var(--tertiary);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px var(--tertiary);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Custom Cursor */
+      .custom-cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--secondary);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        transition: width 0.3s, height 0.3s, background-color 0.3s;
+        mix-blend-mode: difference;
+      }
+
+      .custom-cursor-follower {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 9998;
+        transition: transform 0.1s;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        width: 100%;
+        padding: 20px 0;
+        background: linear-gradient(
+          90deg,
+          rgba(123, 44, 191, 0.2) 0%,
+          rgba(0, 245, 255, 0.2) 100%
+        );
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 1000;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-weight: 800;
+        font-size: 2.2rem;
+        letter-spacing: 3px;
+        color: var(--light);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        position: relative;
+        text-shadow: var(--neon-text-shadow);
+      }
+
+      .logo span {
+        color: var(--secondary);
+      }
+
+      .logo::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        bottom: -5px;
+        left: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--secondary),
+          transparent
+        );
+        transform-origin: right;
+      }
+
+      .logo-icon {
+        margin-right: 10px;
+        font-size: 1.8rem;
+        color: var(--tertiary);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Navigation */
+      .menu-toggle {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--light);
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      nav {
+        position: relative;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 40px;
+      }
+
+      .nav-links li {
+        position: relative;
+      }
+
+      .nav-links a {
+        color: var(--light);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a:hover {
+        color: var(--secondary);
+      }
+
+      .nav-links a::before {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--secondary);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover::before {
+        width: 100%;
+      }
+
+      .nav-links .active a {
+        color: var(--secondary);
+      }
+
+      .nav-links .active a::before {
+        width: 100%;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        padding-top: 92px;
+      }
+
+      .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("https://source.unsplash.com/random/1600x900?space")
+          center/cover;
+        z-index: -1;
+      }
+
+      .hero-background::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          var(--darker) 0%,
+          rgba(15, 12, 41, 0.3) 50%,
+          var(--darker) 100%
+        );
+        z-index: 1;
+      }
+
+      .hero-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            to right,
+            rgba(0, 245, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(0, 245, 255, 0.1) 1px,
+            transparent 1px
+          );
+        background-size: 50px 50px;
+        transform: perspective(500px) rotateX(30deg);
+        transform-origin: center;
+        z-index: 0;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        position: relative;
+        z-index: 2;
+        transform: translateY(-50px);
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        background: rgba(123, 44, 191, 0.3);
+        color: var(--secondary);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        border: 1px solid rgba(0, 245, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-tag::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        animation: shimmer 3s infinite;
+      }
+
+      @keyframes shimmer {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+
+      .hero h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 5rem;
+        line-height: 1.1;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .hero h1 .highlight {
+        color: var(--secondary);
+        text-shadow: var(--neon-text-shadow);
+      }
+
+      .hero h1 .bg-clip {
+        background-image: linear-gradient(
+          90deg,
+          var(--tertiary),
+          var(--secondary)
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+        max-width: 600px;
+        color: rgba(233, 236, 239, 0.8);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 30px;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: var(--light);
+        border: 1px solid var(--primary);
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: var(--secondary);
+        transition: all 0.3s ease;
+        z-index: -1;
+      }
+
+      .btn-primary:hover {
+        color: var(--dark);
+        border-color: var(--secondary);
+      }
+
+      .btn-primary:hover::before {
+        width: 100%;
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        color: var(--secondary);
+        border: 1px solid var(--secondary);
+      }
+
+      .btn-outline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: var(--secondary);
+        transition: all 0.3s ease;
+        z-index: -1;
+        opacity: 0.1;
+      }
+
+      .btn-outline:hover {
+        color: var(--light);
+      }
+
+      .btn-outline:hover::before {
+        width: 100%;
+      }
+
+      .scroll-down {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      .scroll-down span {
+        color: var(--light);
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .scroll-down i {
+        font-size: 1.5rem;
+        color: var(--secondary);
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Floating Elements */
+      .floating-element {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(
+          circle,
+          rgba(123, 44, 191, 0.2) 0%,
+          rgba(0, 245, 255, 0.1) 100%
+        );
+        border-radius: 50%;
+        filter: blur(50px);
+        z-index: -1;
+        animation: float 15s infinite ease-in-out;
+      }
+
+      .floating-element:nth-child(1) {
+        top: 20%;
+        right: 15%;
+        width: 400px;
+        height: 400px;
+        animation-delay: 0s;
+      }
+
+      .floating-element:nth-child(2) {
+        bottom: 10%;
+        left: 10%;
+        width: 350px;
+        height: 350px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 0, 85, 0.2) 0%,
+          rgba(0, 245, 255, 0.1) 100%
+        );
+        animation-delay: -5s;
+      }
+
+      .floating-element:nth-child(3) {
+        top: 40%;
+        left: 20%;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 255, 170, 0.2) 0%,
+          rgba(123, 44, 191, 0.1) 100%
+        );
+        animation-delay: -10s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(20px, -20px) scale(1.05);
+        }
+        50% {
+          transform: translate(0, 20px) scale(1);
+        }
+        75% {
+          transform: translate(-20px, -10px) scale(0.95);
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 120px 0;
+        position: relative;
+      }
+
+      .section-header {
+        margin-bottom: 80px;
+        text-align: center;
+        position: relative;
+      }
+
+      .section-subtitle {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--secondary);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+        position: relative;
+      }
+
+      .section-subtitle::before,
+      .section-subtitle::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 30px;
+        height: 1px;
+        background-color: var(--secondary);
+      }
+
+      .section-subtitle::before {
+        left: -40px;
+      }
+
+      .section-subtitle::after {
+        right: -40px;
+      }
+
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 3rem;
+        color: var(--light);
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title span {
+        color: var(--secondary);
+        text-shadow: var(--neon-text-shadow);
+      }
+
+      .section-description {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        color: rgba(233, 236, 239, 0.8);
+      }
+
+      /* Spaces Grid */
+      .spaces-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .space-card {
+        position: relative;
+        background: linear-gradient(
+          145deg,
+          rgba(15, 12, 41, 0.8),
+          rgba(6, 4, 32, 0.9)
+        );
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        border: 1px solid rgba(123, 44, 191, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform-style: preserve-3d;
+        perspective: 1000px;
+      }
+
+      .space-card:hover {
+        transform: translateY(-10px) rotateX(5deg);
+        border-color: var(--secondary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2),
+          0 0 20px rgba(0, 245, 255, 0.2);
+      }
+
+      .space-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(0, 245, 255, 0.1) 100%
+        );
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .space-card:hover::before {
+        opacity: 1;
+      }
+
+      .space-img {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .space-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: all 0.5s ease;
+      }
+
+      .space-card:hover .space-img img {
+        transform: scale(1.1);
+      }
+
+      .space-img::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          0deg,
+          rgba(6, 4, 32, 1) 0%,
+          rgba(6, 4, 32, 0) 100%
+        );
+      }
+
+      .space-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(255, 0, 85, 0.8);
+        color: var(--light);
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 0, 85, 0.3);
+        box-shadow: 0 5px 15px rgba(255, 0, 85, 0.3);
+      }
+
+      .space-badge.ungated {
+        background: rgba(0, 255, 170, 0.8);
+        color: var(--dark);
+        border-color: rgba(0, 255, 170, 0.3);
+        box-shadow: 0 5px 15px rgba(0, 255, 170, 0.3);
+      }
+
+      .space-content {
+        padding: 30px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .space-content h3 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        color: var(--light);
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+      }
+
+      .space-card:hover .space-content h3 {
+        color: var(--secondary);
+        text-shadow: var(--neon-text-shadow);
+      }
+
+      .space-content p {
+        color: rgba(233, 236, 239, 0.7);
+        margin-bottom: 25px;
+        font-size: 1rem;
+      }
+
+      .space-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .space-users {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: rgba(233, 236, 239, 0.6);
+        font-size: 0.9rem;
+      }
+
+      .space-action .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      /* Map Section */
+      .map-section {
+        position: relative;
+        padding: 120px 0;
+        background: linear-gradient(
+          0deg,
+          rgba(6, 4, 32, 0.9) 0%,
+          rgba(15, 12, 41, 0.9) 100%
+        );
+        overflow: hidden;
+      }
+
+      .map-container {
+        background: rgba(15, 12, 41, 0.9);
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(0, 245, 255, 0.2);
+        position: relative;
+      }
+
+      .map-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.5s ease;
+      }
+
+      .map-container:hover img {
+        transform: scale(1.05);
+      }
+
+      .map-legend {
+        margin-top: 30px;
+        background: rgba(6, 4, 32, 0.7);
+        padding: 20px;
+        border-radius: 5px;
+        border: 1px solid rgba(123, 44, 191, 0.2);
+      }
+
+      .map-legend h3 {
+        color: var(--secondary);
+        font-family: "Orbitron", sans-serif;
+        margin-bottom: 15px;
+      }
+
+      .map-legend ul {
+        list-style: none;
+      }
+
+      .map-legend li {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        color: rgba(233, 236, 239, 0.8);
+      }
+
+      .map-legend li strong {
+        color: var(--light);
+      }
+
+      .map-legend p {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: rgba(233, 236, 239, 0.6);
+      }
+
+      /* Proof Section */
+      .proof-section {
+        padding: 120px 0;
+      }
+
+      .proof-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .proof-card {
+        background: linear-gradient(
+          145deg,
+          rgba(15, 12, 41, 0.8),
+          rgba(6, 4, 32, 0.9)
+        );
+        padding: 40px;
+        border-radius: 10px;
+        border: 1px solid rgba(123, 44, 191, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
+      }
+
+      .proof-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--secondary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .proof-card h3 {
+        font-family: "Orbitron", sans-serif;
+        color: var(--secondary);
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+      }
+
+      .proof-card ul {
+        list-style: none;
+      }
+
+      .proof-card li {
+        margin-bottom: 15px;
+        font-size: 1rem;
+      }
+
+      .proof-card a {
+        color: var(--secondary);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .proof-card a:hover {
+        color: var(--tertiary);
+      }
+
+      .proof-card .btn {
+        margin-top: 20px;
+        display: inline-block;
+      }
+
+      /* Resources Section */
+      .resources-section {
+        padding: 120px 0;
+        background: linear-gradient(
+          0deg,
+          rgba(6, 4, 32, 0.9) 0%,
+          rgba(15, 12, 41, 0.9) 100%
+        );
+      }
+
+      .resources-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .resource-card {
+        background: linear-gradient(
+          145deg,
+          rgba(15, 12, 41, 0.8),
+          rgba(6, 4, 32, 0.9)
+        );
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        border: 1px solid rgba(123, 44, 191, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-10px) rotate(2deg);
+        border-color: var(--secondary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .resource-icon {
+        font-size: 2.5rem;
+        color: var(--secondary);
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .resource-card:hover .resource-icon {
+        transform: scale(1.2);
+      }
+
+      .resource-card h3 {
+        font-family: "Orbitron", sans-serif;
+        color: var(--light);
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+      }
+
+      .resource-card p {
+        color: rgba(233, 236, 239, 0.7);
+        margin-bottom: 20px;
+        font-size: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(180deg, var(--dark) 0%, var(--darker) 100%);
+        padding: 60px 0;
+        border-top: 1px solid rgba(123, 44, 191, 0.2);
+        text-align: center;
+      }
+
+      .footer-logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--light);
+        text-shadow: var(--neon-text-shadow);
+        margin-bottom: 30px;
+      }
+
+      .footer-logo span {
+        color: var(--secondary);
+      }
+
+      .social-links {
+        margin-bottom: 30px;
+      }
+
+      .social-links a {
+        color: var(--light);
+        font-size: 1.8rem;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--secondary);
+        transform: scale(1.2);
+      }
+
+      .footer-nav {
+        margin-bottom: 20px;
+      }
+
+      .footer-nav a {
+        color: rgba(233, 236, 239, 0.8);
+        margin: 0 15px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+      }
+
+      .footer-nav a:hover {
+        color: var(--secondary);
+      }
+
+      .copyright {
+        color: rgba(233, 236, 239, 0.5);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .proof-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+        .hero p {
+          font-size: 1rem;
+        }
+        .section-title {
+          font-size: 2.2rem;
+        }
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: var(--dark);
+          padding: 20px;
+          gap: 20px;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .spaces-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .resources-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .section-title {
+          font-size: 1.8rem;
+        }
+        .hero-btns {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-rocket logo-icon"></i>
+            RATCHET<span>+</span>CLANKER
+          </div>
+          <button class="menu-toggle"><i class="fas fa-bars"></i></button>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#spaces">Spaces</a></li>
+              <li><a href="#map">Central Map</a></li>
+              <li><a href="#proof">Proof</a></li>
+              <li><a href="#resources">Resources</a></li>
+              <li>
+                <a
+                  href="https://warpcast.com/~/channel/ratchet-clanker"
+                  target="_blank"
+                  >Warpcast</a
+                >
+              </li>
+              <li>
+                <a href="https://linktr.ee/drakhonen" target="_blank">Links</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-background"></div>
+      <div class="hero-grid"></div>
+      <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+          <span class="hero-tag">Virtual Community</span>
+          <h1>
+            WELCOME TO <span class="highlight">RATCHET</span>
+            <span class="bg-clip">CLANKER</span>
+          </h1>
+          <p>
+            The premier virtual community space for members and guests. Explore
+            our hangars, join discussions, and connect with the community.
+          </p>
+          <div class="hero-btns">
+            <a href="#spaces" class="btn btn-primary">Explore Spaces</a>
+            <a
+              href="https://warpcast.com/~/channel/ratchet-clanker"
+              class="btn btn-outline"
+              target="_blank"
+              >Join Warpcast</a
+            >
+          </div>
+        </div>
+      </div>
+      <a href="#spaces" class="scroll-down">
+        <span>Scroll</span>
+        <i class="fas fa-chevron-down"></i>
+      </a>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </section>
+
+    <!-- Spaces -->
+    <section id="spaces" class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Our Universe</span>
+          <h2 class="section-title">Community <span>Spaces</span></h2>
+          <p class="section-description">
+            All currently active @oncyber live community spaces available to
+            Ratchet Clanker members and guests.
+          </p>
+        </div>
+        <div class="spaces-grid" data-aos="fade-up" data-aos-delay="200">
+          <div class="space-card">
+            <div class="space-img">
+              <img
+                src="/api/placeholder/350/220"
+                alt="RaTcHeT Central Main Hanger"
+              />
+            </div>
+            <div class="space-content">
+              <h3>RaTcHeT Central MAIN HANGER</h3>
+              <p>
+                The central hub for all Ratchet Clanker community activities.
+              </p>
+              <div class="space-footer">
+                <div class="space-users"><i class="fas fa-users"></i> Open</div>
+                <div class="space-action">
+                  <a
+                    href="https://oncyber.io/ratchet-clanker-hanger"
+                    class="btn btn-primary"
+                    target="_blank"
+                    >Visit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-img">
+              <img src="/api/placeholder/350/220" alt="Degen Terminus" />
+              <span class="space-badge">Portals Gated</span>
+            </div>
+            <div class="space-content">
+              <h3>Degen Terminus</h3>
+              <p>WIP building. Exploration & $Degen Info.</p>
+              <div class="space-footer">
+                <div class="space-users">
+                  <i class="fas fa-users"></i> Gated
+                </div>
+                <div class="space-action">
+                  <a
+                    href="https://oncyber.io/ratchet-degen-terminus"
+                    class="btn btn-primary"
+                    target="_blank"
+                    >Visit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-img">
+              <img src="/api/placeholder/350/220" alt="Hanger A" />
+              <span class="space-badge ungated">Ungated/Voice</span>
+            </div>
+            <div class="space-content">
+              <h3>Hanger A</h3>
+              <p>
+                Garage Area - open to all members with voice chat capability.
+              </p>
+              <div class="space-footer">
+                <div class="space-users"><i class="fas fa-users"></i> Open</div>
+                <div class="space-action">
+                  <a
+                    href="https://oncyber.io/ratchet-hanger-a"
+                    class="btn btn-primary"
+                    target="_blank"
+                    >Visit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-img">
+              <img src="/api/placeholder/350/220" alt="Hanger B" />
+              <span class="space-badge ungated">Ungated/Voice</span>
+            </div>
+            <div class="space-content">
+              <h3>Hanger B</h3>
+              <p>Spa Area - open to all members with voice chat capability.</p>
+              <div class="space-footer">
+                <div class="space-users"><i class="fas fa-users"></i> Open</div>
+                <div class="space-action">
+                  <a
+                    href="https://oncyber.io/ratchet-hanger-b"
+                    class="btn btn-primary"
+                    target="_blank"
+                    >Visit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-img">
+              <img src="/api/placeholder/350/220" alt="Hanger C" />
+              <span class="space-badge ungated">Ungated/Voice</span>
+            </div>
+            <div class="space-content">
+              <h3>Hanger C</h3>
+              <p>Bar Area - open to all members with voice chat capability.</p>
+              <div class="space-footer">
+                <div class="space-users"><i class="fas fa-users"></i> Open</div>
+                <div class="space-action">
+                  <a
+                    href="https://oncyber.io/ratchet-hanger-c"
+                    class="btn btn-primary"
+                    target="_blank"
+                    >Visit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="space-card">
+            <div class="space-img">
+              <img src="/api/placeholder/350/220" alt="Captain's Cove" />
+              <span class="space-badge">Gated/Voice</span>
+            </div>
+            <div class="space-content">
+              <h3>Captain's Cove</h3>
+              <p>Exclusive Area - Requires Captain's Key NFT for access.</p>
+              <div class="space-footer">
+                <div class="space-users">
+                  <i class="fas fa-users"></i> Gated
+                </div>
+                <div class="space-action">
+                  <a
+                    href="https://oncyber.io/ratchet-captains-cove"
+                    class="btn btn-primary"
+                    target="_blank"
+                    >Visit</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map -->
+    <section id="map" class="map-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Navigation</span>
+          <h2 class="section-title">Central <span>Map</span></h2>
+          <p class="section-description">
+            Navigate through all the available spaces in our community.
+          </p>
+        </div>
+        <div class="map-container" data-aos="fade-up" data-aos-delay="200">
+          <img src="/api/placeholder/1000/600" alt="RaTcHeT Central Map" />
+          <div class="map-legend">
+            <h3>Map Legend:</h3>
+            <ul>
+              <li><strong>Red Area:</strong> $RaTcHeT Central - Common Area</li>
+              <li>
+                <strong>Yellow Areas:</strong> Hangers (A, B, C) - Ungated with
+                voice chat
+              </li>
+              <li>
+                <strong>Green Area:</strong> Degen Terminus - Portals gated
+              </li>
+              <li>
+                <strong>Yellow Area (bottom):</strong> Captain's Cove -
+                Exclusive Area (gated/voice)
+              </li>
+            </ul>
+            <p>
+              <strong>Note:</strong> Captain's Cove requires a Captain's Key NFT
+              for access.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof -->
+    <section id="proof" class="proof-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Verification</span>
+          <h2 class="section-title">Proof of <span>Authenticity</span></h2>
+          <p class="section-description">
+            Verify the authenticity of Ratchet Clanker spaces and resources.
+          </p>
+        </div>
+        <div class="proof-grid" data-aos="fade-up" data-aos-delay="200">
+          <div class="proof-card">
+            <h3>Official Channels</h3>
+            <ul>
+              <li>
+                <strong>Warpcast Channel:</strong>
+                <a
+                  href="https://warpcast.com/~/channel/ratchet-clanker"
+                  target="_blank"
+                  >warpcast.com/~/channel/ratchet-clanker</a
+                >
+              </li>
+              <li>
+                <strong>Telegram:</strong>
+                <a href="#" target="_blank">$RaTcHeT Telegram</a>
+              </li>
+              <li>
+                <strong>Primary Links:</strong>
+                <a href="https://linktr.ee/drakhonen" target="_blank"
+                  >linktr.ee/drakhonen</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="proof-card">
+            <h3>Assets Verification</h3>
+            <p>
+              To access gated areas like Captain's Cove, you need to have the
+              Captain's Key NFT in your wallet.
+            </p>
+            <a href="#" class="btn btn-primary">Verify NFT Ownership</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="resources-section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Tools</span>
+          <h2 class="section-title">Community <span>Resources</span></h2>
+          <p class="section-description">
+            Essential resources for the Ratchet Clanker community.
+          </p>
+        </div>
+        <div class="resources-grid" data-aos="fade-up" data-aos-delay="200">
+          <div class="resource-card">
+            <div class="resource-icon">🌐</div>
+            <h3>Warpcast Channel</h3>
+            <p>JOIN $RaTcHeT Official Warpcast Channel</p>
+            <a
+              href="https://warpcast.com/~/channel/ratchet-clanker"
+              class="btn btn-primary"
+              target="_blank"
+              >Join Now</a
+            >
+          </div>
+          <div class="resource-card">
+            <div class="resource-icon">💱</div>
+            <h3>$RaTcHeT DEX</h3>
+            <p>Exchange platform for $RaTcHeT tokens</p>
+            <a href="#" class="btn btn-primary" target="_blank">Visit DEX</a>
+          </div>
+          <div class="resource-card">
+            <div class="resource-icon">📱</div>
+            <h3>$RaTcHeT Telegram</h3>
+            <p>Join our Telegram community</p>
+            <a href="#" class="btn btn-primary" target="_blank"
+              >Join Telegram</a
+            >
+          </div>
+          <div class="resource-card">
+            <div class="resource-icon">🔑</div>
+            <h3>Captain's Key</h3>
+            <p>Required gated asset for Captain's Cove</p>
+            <a href="#" class="btn btn-primary" target="_blank">Learn More</a>
+          </div>
+          <div class="resource-card">
+            <div class="resource-icon">🔄</div>
+            <h3>$RaTcHeT Rebase LP</h3>
+            <p>Liquidity Pool information</p>
+            <a href="#" class="btn btn-primary" target="_blank">View Details</a>
+          </div>
+          <div class="resource-card">
+            <div class="resource-icon">🔗</div>
+            <h3>All Links</h3>
+            <p>Primary Links for EVERYTHING RaTcHeT</p>
+            <a
+              href="https://linktr.ee/drakhonen"
+              class="btn btn-primary"
+              target="_blank"
+              >Linktr.ee</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-logo">RATCHET<span>+</span>CLANKER</div>
+        <div class="social-links">
+          <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a
+            href="https://warpcast.com/~/channel/ratchet-clanker"
+            target="_blank"
+            ><i class="fas fa-globe"></i
+          ></a>
+          <a href="#" target="_blank"><i class="fas fa-exchange-alt"></i></a>
+          <a href="https://linktr.ee/drakhonen" target="_blank"
+            ><i class="fas fa-link"></i
+          ></a>
+        </div>
+        <div class="footer-nav">
+          <a href="#spaces">Spaces</a>
+          <a href="#map">Map</a>
+          <a href="#proof">Authenticity</a>
+          <a href="#resources">Resources</a>
+        </div>
+        <div class="copyright">
+          © 2025 RATCHET+CLANKER. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      // Preloader
+      window.addEventListener("load", () => {
+        document.querySelector(".preloader").classList.add("hidden");
+      });
+
+      // Custom Cursor
+      const cursor = document.querySelector(".custom-cursor");
+      const follower = document.querySelector(".custom-cursor-follower");
+      let mouseX = 0,
+        mouseY = 0;
+      let followerX = 0,
+        followerY = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + "px";
+        cursor.style.top = mouseY + "px";
+      });
+
+      function animateFollower() {
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        follower.style.left = followerX + "px";
+        follower.style.top = followerY + "px";
+        requestAnimationFrame(animateFollower);
+      }
+      animateFollower();
+
+      document.querySelectorAll("a, button").forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          cursor.style.width = "30px";
+          cursor.style.height = "30px";
+          cursor.style.backgroundColor = "rgba(0, 245, 255, 0.2)";
+        });
+        el.addEventListener("mouseleave", () => {
+          cursor.style.width = "20px";
+          cursor.style.height = "20px";
+          cursor.style.backgroundColor = "transparent";
+        });
+      });
+
+      // Mobile Menu
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // AOS Initialization
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+
+      // Parallax Effect
+      window.addEventListener("scroll", () => {
+        const heroBg = document.querySelector(".hero-background");
+        const scrollPosition = window.scrollY;
+        heroBg.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+      });
+    </script>
+  </body>
+</html>
