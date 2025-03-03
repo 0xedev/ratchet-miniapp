@@ -166,18 +166,20 @@
         -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 1000;
+        transition: all 0.3s ease;
       }
 
       .header-content {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
       }
 
       .logo {
         font-family: "Orbitron", sans-serif;
         font-weight: 800;
-        font-size: 2.2rem;
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
         letter-spacing: 3px;
         color: var(--light);
         text-transform: uppercase;
@@ -209,7 +211,7 @@
 
       .logo-icon {
         margin-right: 10px;
-        font-size: 1.8rem;
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
         color: var(--tertiary);
         animation: pulse 2s infinite;
       }
@@ -232,22 +234,32 @@
       /* Navigation */
       .menu-toggle {
         display: none;
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         color: var(--light);
         background: none;
         border: none;
         cursor: pointer;
-        z-index: 1000;
+        z-index: 1001;
+        padding: 10px;
+        transition: transform 0.3s ease;
+      }
+
+      .menu-toggle.active {
+        transform: rotate(90deg);
       }
 
       nav {
         position: relative;
+        width: 100%;
       }
 
       .nav-links {
         display: flex;
         list-style: none;
         gap: 40px;
+        justify-content: flex-end;
+        align-items: center;
+        transition: all 0.3s ease;
       }
 
       .nav-links li {
@@ -258,12 +270,13 @@
         color: var(--light);
         text-decoration: none;
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
         text-transform: uppercase;
         letter-spacing: 1px;
         transition: all 0.3s ease;
         position: relative;
-        padding: 5px 0;
+        padding: 10px 0;
+        white-space: nowrap;
       }
 
       .nav-links a:hover {
@@ -273,7 +286,7 @@
       .nav-links a::before {
         content: "";
         position: absolute;
-        bottom: -2px;
+        bottom: 0;
         left: 0;
         width: 0;
         height: 2px;
@@ -1094,6 +1107,9 @@
         .proof-grid {
           grid-template-columns: 1fr;
         }
+        .nav-links {
+          gap: 20px;
+        }
       }
 
       @media (max-width: 768px) {
@@ -1106,6 +1122,22 @@
         .section-title {
           font-size: 2.2rem;
         }
+
+        /* Navbar Responsiveness */
+        header {
+          padding: 15px 0;
+        }
+
+        .header-content {
+          flex-direction: row;
+          align-items: center;
+          position: relative;
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
         .nav-links {
           display: none;
           flex-direction: column;
@@ -1113,17 +1145,30 @@
           top: 100%;
           left: 0;
           width: 100%;
-          background: var(--dark);
+          background: linear-gradient(180deg, var(--dark), var(--darker));
           padding: 20px;
           gap: 20px;
+          border-top: 1px solid rgba(123, 44, 191, 0.2);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .nav-links.active {
           display: flex;
         }
 
-        .menu-toggle {
+        .nav-links li {
+          width: 100%;
+          text-align: center;
+        }
+
+        .nav-links a {
           display: block;
+          padding: 15px;
+          font-size: 1.2rem;
+        }
+
+        .nav-links a::before {
+          bottom: 5px;
         }
 
         .spaces-grid {
@@ -1145,6 +1190,10 @@
         .hero-btns {
           flex-direction: column;
           align-items: center;
+        }
+        .nav-links a {
+          font-size: 1rem;
+          padding: 12px;
         }
       }
     </style>
@@ -1601,6 +1650,7 @@
       const navLinks = document.querySelector(".nav-links");
       menuToggle.addEventListener("click", () => {
         navLinks.classList.toggle("active");
+        menuToggle.classList.toggle("active");
       });
 
       // AOS Initialization
