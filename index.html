@@ -208,10 +208,18 @@
         ); /* Now yellow */
         transform-origin: right;
       }
-
+      /* 
       .logo-icon {
         margin-right: 10px;
         font-size: clamp(1.2rem, 3vw, 1.8rem);
+        color: var(--tertiary);
+        animation: pulse 2s infinite;
+      } */
+
+      .logo-icon {
+        margin-right: 15px;
+        width: clamp(1.2rem, 3vw, 1.8rem); /* Replaces font-size */
+        height: auto; /* Maintain aspect ratio */
         color: var(--tertiary);
         animation: pulse 2s infinite;
       }
@@ -1251,7 +1259,12 @@
       <div class="container">
         <div class="header-content">
           <div class="logo">
-            <i class="fas fa-robot logo-icon"></i>
+            <img
+              src="img/original.webp"
+              alt="Ratchet+Clanker Logo"
+              class="logo-icon"
+            />
+            <!-- <i class="fas fa-robot logo-icon"></i> -->
             RATCHET<span>+</span>CLANKER
           </div>
           <button class="menu-toggle"><i class="fas fa-bars"></i></button>
@@ -1609,7 +1622,7 @@
               href="https://zora.co/collect/base:0x4c2222beea431b9f3404895fe8ef33c16cffeeed/1"
               class="btn btn-primary"
               target="_blank"
-              >Learn More</a
+              >Mint yours</a
             >
           </div>
           <div class="resource-card">
