@@ -208,13 +208,6 @@
         ); /* Now yellow */
         transform-origin: right;
       }
-      /* 
-      .logo-icon {
-        margin-right: 10px;
-        font-size: clamp(1.2rem, 3vw, 1.8rem);
-        color: var(--tertiary);
-        animation: pulse 2s infinite;
-      } */
 
       .logo-icon {
         margin-right: 15px;
@@ -335,6 +328,7 @@
         display: flex;
         align-items: center;
         padding-top: 92px;
+        padding-bottom: 60px;
       }
 
       .hero-background {
@@ -387,12 +381,13 @@
       }
 
       .hero-content {
-        max-width: 800px;
+        max-width: 900px;
         position: relative;
         z-index: 2;
         transform: translateY(-50px);
         text-align: center;
         margin: 0 auto;
+        padding: 20px;
       }
 
       .hero-tag {
@@ -403,10 +398,12 @@
         border-radius: 20px;
         font-size: 0.9rem;
         font-weight: 600;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         border: 1px solid rgba(255, 193, 7, 0.3); /* Updated to yellow */
         position: relative;
         overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
 
       .hero-tag::before {
@@ -436,13 +433,82 @@
 
       .hero h1 {
         font-family: "Orbitron", sans-serif;
-        font-size: 5rem;
+        font-size: clamp(2.5rem, 8vw, 5rem); /* Responsive sizing */
         line-height: 1.1;
         margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 2px;
         position: relative;
         display: inline-block;
+        text-shadow: 0 0 15px rgba(123, 44, 191, 0.5); /* Subtle glow */
+      }
+
+      .hero-description {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        max-width: 600px;
+        color: rgba(233, 236, 239, 0.9);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-info {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .hero-ticker {
+        font-size: 1.1rem;
+        color: var(--light);
+      }
+
+      .hero-ticker strong {
+        color: var(--secondary);
+        font-weight: 700;
+        text-shadow: var(--neon-text-shadow);
+      }
+
+      .hero-ca {
+        font-size: 0.95rem;
+        color: rgba(233, 236, 239, 0.8);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero-ca code {
+        background: rgba(255, 193, 7, 0.1);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-family: "Orbitron", sans-serif;
+        color: var(--secondary);
+        letter-spacing: 1px;
+      }
+
+      .copy-btn {
+        background: none;
+        border: 1px solid rgba(255, 193, 7, 0.3);
+        color: var(--secondary);
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .copy-btn:hover {
+        background: rgba(255, 193, 7, 0.2);
+        border-color: var(--secondary);
+        box-shadow: var(--glow);
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .hero h1 .highlight {
@@ -1065,6 +1131,73 @@
         font-size: 1rem;
       }
 
+      /* Contact Form */
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: linear-gradient(
+          145deg,
+          rgba(15, 12, 41, 0.8),
+          rgba(6, 4, 32, 0.9)
+        );
+        padding: 40px;
+        border-radius: 10px;
+        border: 1px solid rgba(123, 44, 191, 0.2);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
+      }
+
+      .contact-form:hover {
+        transform: translateY(-10px);
+        border-color: var(--secondary);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--light);
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        color: var(--light);
+        font-size: 1rem;
+        font-family: "Rajdhani", sans-serif;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--secondary);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .contact-form .btn {
+        width: 100%;
+        text-align: center;
+      }
+
       /* Footer */
       footer {
         background: linear-gradient(180deg, var(--dark) 0%, var(--darker) 100%);
@@ -1272,8 +1405,8 @@
             <ul class="nav-links">
               <li><a href="#spaces">Spaces</a></li>
               <li><a href="#map">Central Map</a></li>
-              <li><a href="#proof">Proof</a></li>
               <li><a href="#resources">Resources</a></li>
+              <li><a href="#contact">Contact Us</a></li>
               <li>
                 <a
                   href="https://warpcast.com/~/channel/ratchet-clanker"
@@ -1307,10 +1440,18 @@
             WELCOME TO <span class="highlight">RATCHET</span>
             <span class="bg-clip">CLANKER</span>
           </h1>
-          <p>
-            The premier virtual community space for members and guests. Explore
-            our hangars, join discussions, and connect with the community.
+          <p class="hero-description">
+            The premier virtual community space for members and guests.
           </p>
+          <div class="hero-info">
+            <span class="hero-ticker">Ticker: <strong>$RaTcHeT</strong></span>
+            <span class="hero-ca">
+              CA: <code>0x1D35741C51fB615cA70e28d3321f6F01e8D8A12D</code>
+              <button class="copy-btn" title="Copy to clipboard">
+                <i class="fas fa-copy"></i>
+              </button>
+            </span>
+          </div>
           <div class="hero-btns">
             <a href="#spaces" class="btn btn-primary">Explore Spaces</a>
             <a
@@ -1597,7 +1738,7 @@
             <h3>$RaTcHeT DEX</h3>
             <p>Buy $RaTcHeT tokens</p>
             <a
-              href="https://app.uniswap.org/swap?outputCurrency=0x1D35741C51fB615cA70e28d3321f6F01e8D8A12D&chain=base"
+              href="https://dexscreener.com/base/0x8eb191bb3f3da5361fced14261439b0b68c0a277"
               class="btn btn-primary"
               target="_blank"
               >Buy Now</a
@@ -1650,7 +1791,53 @@
         </div>
       </div>
     </section>
-
+    <!-- Contact Us -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <span class="section-subtitle">Get in Touch</span>
+          <h2 class="section-title">Contact <span>Us</span></h2>
+          <p class="section-description">
+            Have questions or want to connect? Send us a message!
+          </p>
+        </div>
+        <div class="contact-form" data-aos="fade-up" data-aos-delay="200">
+          <form action="https://formspree.io/f/xpwpaplo" method="POST">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Your Message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
     <!-- Footer -->
     <footer>
       <div class="container">
@@ -1679,6 +1866,7 @@
           <a href="#map">Map</a>
           <a href="#proof">Authenticity</a>
           <a href="#resources">Resources</a>
+          <a href="#contact">Contact</a>
         </div>
         <div class="copyright">
           © 2025 RATCHET+CLANKER. All rights reserved.
@@ -1692,6 +1880,24 @@
       // Preloader
       window.addEventListener("load", () => {
         document.querySelector(".preloader").classList.add("hidden");
+      });
+
+      // Copy to Clipboard Functionality
+      const copyBtn = document.querySelector(".copy-btn");
+      const contractAddress = "0x1D35741C51fB615cA70e28d3321f6F01e8D8A12D";
+
+      copyBtn.addEventListener("click", () => {
+        navigator.clipboard
+          .writeText(contractAddress)
+          .then(() => {
+            copyBtn.innerHTML = '<i class="fas fa-check"></i>'; // Show checkmark
+            setTimeout(() => {
+              copyBtn.innerHTML = '<i class="fas fa-copy"></i>'; // Revert to copy icon
+            }, 2000); // Revert after 2 seconds
+          })
+          .catch((err) => {
+            console.error("Failed to copy: ", err);
+          });
       });
 
       // Custom Cursor
