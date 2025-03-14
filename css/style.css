@@ -191,8 +191,9 @@ header {
 }
 
 .logo-icon {
-  margin-right: 10px;
-  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  margin-right: 15px;
+  width: clamp(1.2rem, 3vw, 1.8rem); /* Replaces font-size */
+  height: auto; /* Maintain aspect ratio */
   color: var(--tertiary);
   animation: pulse 2s infinite;
 }
@@ -308,6 +309,7 @@ nav {
   display: flex;
   align-items: center;
   padding-top: 92px;
+  padding-bottom: 60px;
 }
 
 .hero-background {
@@ -356,12 +358,13 @@ nav {
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 900px;
   position: relative;
   z-index: 2;
   transform: translateY(-50px);
   text-align: center;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .hero-tag {
@@ -370,12 +373,14 @@ nav {
   color: var(--secondary); /* Now yellow */
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.5vw, 0.9rem);
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   border: 1px solid rgba(255, 193, 7, 0.3); /* Updated to yellow */
   position: relative;
   overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .hero-tag::before {
@@ -405,13 +410,85 @@ nav {
 
 .hero h1 {
   font-family: "Orbitron", sans-serif;
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 8vw, 5rem); /* Responsive sizing */
   line-height: 1.1;
   margin-bottom: 30px;
   text-transform: uppercase;
   letter-spacing: 2px;
   position: relative;
   display: inline-block;
+  text-shadow: 0 0 15px rgba(123, 44, 191, 0.5); /* Subtle glow */
+}
+
+.hero-description {
+  font-size: clamp(1rem, 3vw, 1.2rem); /* Responsive description */
+  margin-bottom: 20px;
+  max-width: 600px;
+  color: rgba(233, 236, 239, 0.9);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-info {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.hero-ticker {
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+  color: var(--light);
+}
+
+.hero-ticker strong {
+  color: var(--secondary);
+  font-weight: 700;
+  text-shadow: var(--neon-text-shadow);
+}
+
+.hero-ca {
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+  color: rgba(233, 236, 239, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap; /* Allows wrapping on small screens */
+  justify-content: center;
+}
+
+.hero-ca code {
+  background: rgba(255, 193, 7, 0.1);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-family: "Orbitron", sans-serif;
+  color: var(--secondary);
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+
+.copy-btn {
+  background: none;
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  color: var(--secondary);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 193, 7, 0.2);
+  border-color: var(--secondary);
+  box-shadow: var(--glow);
+}
+
+.hero-btns {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .hero h1 .highlight {
@@ -448,9 +525,9 @@ nav {
 
 .btn {
   display: inline-block;
-  padding: 14px 30px;
+  padding: clamp(10px, 2vw, 14px) clamp(20px, 3vw, 30px); /* Responsive padding */
   text-decoration: none;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -517,7 +594,7 @@ nav {
 
 .scroll-down {
   position: absolute;
-  bottom: 40px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -529,15 +606,15 @@ nav {
 
 .scroll-down span {
   color: var(--light);
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
 
 .scroll-down i {
-  font-size: 1.5rem;
-  color: var(--secondary); /* Now yellow */
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: var(--secondary);
   animation: bounce 2s infinite;
 }
 
@@ -1033,6 +1110,73 @@ nav {
   font-size: 1rem;
 }
 
+/* Contact Form */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background: linear-gradient(
+    145deg,
+    rgba(15, 12, 41, 0.8),
+    rgba(6, 4, 32, 0.9)
+  );
+  padding: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(123, 44, 191, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
+.contact-form:hover {
+  transform: translateY(-10px);
+  border-color: var(--secondary);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--light);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--light);
+  font-size: 1rem;
+  font-family: "Rajdhani", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-form .btn {
+  width: 100%;
+  text-align: center;
+}
+
 /* Footer */
 footer {
   background: linear-gradient(180deg, var(--dark) 0%, var(--darker) 100%);
@@ -1115,11 +1259,34 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .hero {
+    padding-top: 80px; /* Adjust for smaller header */
+    padding-bottom: 40px;
+  }
+
+  .hero-content {
+    padding: 15px;
+  }
+
   .hero h1 {
     font-size: 3.5rem;
+    margin-bottom: 15px;
   }
   .hero p {
     font-size: 1rem;
+  }
+
+  .hero-description {
+    margin-bottom: 15px;
+  }
+
+  .hero-info {
+    gap: 8px;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 10px;
   }
   .section-title {
     font-size: 2.2rem;
@@ -1184,6 +1351,9 @@ footer {
   .resources-grid {
     grid-template-columns: 1fr;
   }
+  .scroll-down {
+    bottom: 15px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1193,6 +1363,23 @@ footer {
   .section-title {
     font-size: 1.8rem;
   }
+  .hero {
+    padding-top: 70px;
+  }
+
+  .hero-content {
+    padding: 10px;
+  }
+
+  .hero-ca {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .copy-btn {
+    padding: 3px 6px;
+  }
+
   .hero-btns {
     flex-direction: column;
     align-items: center;
