@@ -25,6 +25,12 @@
       name="fc:frame:button:3:target"
       content="https://warpcast.com/~/channel/ratchet-clanker/join?inviteCode=TAoUPmZLz6af7lmAWzBNEQ"
     />
+    <meta name="fc:frame:button:4" content="Home" />
+    <meta name="fc:frame:button:4:action" content="post" />
+    <meta
+      name="fc:frame:button:4:target"
+      content="https://ratchet-miniapp-lake.vercel.app/"
+    />
     <title>RATCHET+CLANKER Mini App</title>
     <link
       rel="stylesheet"
@@ -450,7 +456,13 @@
       document.querySelectorAll('a[target="_blank"]').forEach((link) => {
         link.addEventListener("click", async (e) => {
           e.preventDefault();
-          await sdk.actions.openUrl(link.href);
+          // Append returnUrl to external links
+          const url = new URL(link.href);
+          url.searchParams.set(
+            "returnUrl",
+            "https://ratchet-miniapp-lake.vercel.app/"
+          );
+          await sdk.actions.openUrl(url.toString());
         });
       });
     </script>
