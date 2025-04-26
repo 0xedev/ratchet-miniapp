@@ -9,9 +9,9 @@
     "name": "Ratchet+Clanker",
     "iconUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
     "homeUrl": "https://ratchet-miniapp-lake.vercel.app",
-    "imageUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
+    "imageUrl": "https://ratchet-miniapp-lake.vercel.app/img/hero.jpg",
     "buttonTitle": "Explore",
-    "splashImageUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
+    "splashImageUrl": "https://ratchet-miniapp-lake.vercel.app/img/hero.jpg",
     "splashBackgroundColor": "#060420",
     "webhookUrl": "https://ratchet-miniapp-lake.vercel.app/api/webhook"
   }
