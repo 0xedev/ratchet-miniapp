@@ -6,13 +6,13 @@
   },
   "frame": {
     "version": "1",
-    "name": "Example Frame",
-    "iconUrl": "https://ratchet-miniapp-lake.vercel.app/icon.png",
+    "name": "Ratchet+Clanker",
+    "iconUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
     "homeUrl": "https://ratchet-miniapp-lake.vercel.app",
-    "imageUrl": "https://ratchet-miniapp-lake.vercel.app/image.png",
-    "buttonTitle": "Check this out",
-    "splashImageUrl": "https://ratchet-miniapp-lake.vercel.app/splash.png",
-    "splashBackgroundColor": "#eeccff",
+    "imageUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
+    "buttonTitle": "Explore",
+    "splashImageUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
+    "splashBackgroundColor": "#060420",
     "webhookUrl": "https://ratchet-miniapp-lake.vercel.app/api/webhook"
   }
 }
