@@ -1,0 +1,18 @@
+{
+  "accountAssociation": {
+    "header": "eyJmaWQiOjIzOTM5NiwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDRENEU1MjIzODRkNkYxMDkwYkZENEM0NTI3YTdkNTJERmQyMGJDYTMifQ",
+    "payload": "eyJkb21haW4iOiJyYXRjaGV0Li1taW5pYXBwLWxha2UudmVyY2VsLmFwcCJ9",
+    "signature": "MHg4OGVhYjZiZjYzZjJkY2E3ZDE0ZTQwNzE2MjAyNjFjZDUxMzViYjRlNjZjYmEwM2Y0OWU0MTFkNDcyZGMzZGNkNWJjYTJkOGEzOWFjZjcxNDEyNzhhNDkxZmZmN2U0OTkwZTZhYzg2ODEyMjNmZTljM2VlYTUzMmRkZTc4OGJkODFi"
+  },
+  "frame": {
+    "version": "1",
+    "name": "Example Frame",
+    "iconUrl": "https://ratchet.-miniapp-lake.vercel.app/icon.png",
+    "homeUrl": "https://ratchet.-miniapp-lake.vercel.app",
+    "imageUrl": "https://ratchet.-miniapp-lake.vercel.app/image.png",
+    "buttonTitle": "Check this out",
+    "splashImageUrl": "https://ratchet.-miniapp-lake.vercel.app/splash.png",
+    "splashBackgroundColor": "#eeccff",
+    "webhookUrl": "https://ratchet.-miniapp-lake.vercel.app/api/webhook"
+  }
+}
