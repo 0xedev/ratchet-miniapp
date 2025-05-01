@@ -7,7 +7,7 @@
   "frame": {
     "version": "1",
     "name": "Ratchet+Clanker",
-    "iconUrl": "https://ratchet-miniapp-lake.vercel.app/hero.jpg",
+    "iconUrl": "https://ratchet-miniapp-lake.vercel.app/img/hero.jpg",
     "homeUrl": "https://ratchet-miniapp-lake.vercel.app",
     "imageUrl": "https://ratchet-miniapp-lake.vercel.app/img/hero.jpg",
     "buttonTitle": "Explore",
